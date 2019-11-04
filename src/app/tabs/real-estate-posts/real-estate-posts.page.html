@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-searchbar animated></ion-searchbar>
+    <ion-segment (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="new" checked>
+        <ion-label>Tin mới</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="sell">
+        <ion-label>Bán</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="rent">
+        <ion-label>Cho thuê</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/tabs/real-estate-posts/new-post">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
