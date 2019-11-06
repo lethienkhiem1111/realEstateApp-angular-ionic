@@ -85,7 +85,7 @@ export class ImagePickerComponent implements OnInit {
     })
     .then((image) =>{
       this.selectedImage = this.sanitizer.bypassSecurityTrustResourceUrl(image && (image.dataUrl));
-      this.imagePick.emit(image.base64String);
+      this.imagePick.emit(image.dataUrl);
     })
     .catch(err => {
       console.log(err)

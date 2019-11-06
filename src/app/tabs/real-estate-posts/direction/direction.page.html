@@ -1,9 +1,25 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>direction</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/real-estate-posts"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Chọn loại tin đăng</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-list>
+    <ion-item (click)="toSellHouse()">
+      <ion-label >Bán nhà</ion-label>
+    </ion-item>
+    <ion-item (click)="toRentHouse()">
+      <ion-label >Thuê nhà</ion-label>
+    </ion-item>
+    <ion-item (click)="toSellLand()">
+      <ion-label>Bán đất</ion-label>
+    </ion-item>
+    <ion-item (click)="toMotelLeases()">
+      <ion-label>Cho thuê phòng trọ</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

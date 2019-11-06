@@ -13,8 +13,8 @@ export class RealEstatePost {
         public district: string,
         public address: string,
         public location: PlaceLocation,
-        public imagesUrl: string,
-        public rating: number,
+        public imagesUrl?: string,
+        public rating?: number,
 
     ) {}
 }

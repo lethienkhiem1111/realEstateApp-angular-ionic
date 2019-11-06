@@ -6,7 +6,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'tabs', pathMatch: 'full' },
   // { path: 'auth', loadChildren: './auth/auth.module#AuthPageModule' },
   { path: 'index', loadChildren: './index/index.module#IndexPageModule' },
-  { path: 'tabs', loadChildren: './tabs/tabs.module#TabsPageModule',canLoad: [AuthGuard] },
+  { path: 'tabs', loadChildren: './tabs/tabs.module#TabsPageModule',canLoad: [AuthGuard] }
   // { path: 'real-estate-post', loadChildren: './real-estate-posts/real-estate-post.module#RealEstatePostsPageModule' },
   // { path: 'notification', loadChildren: './notification/notification.module#NotificationPageModule' },
   // { path: 'properties', loadChildren: './properties/properties.module#PropertiesPageModule' },

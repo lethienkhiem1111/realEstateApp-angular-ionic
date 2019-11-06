@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { RealEstatePost } from './rlestePost.model';
 import { AuthService } from 'src/app/auth/auth.service';
 import { HttpClient } from '@angular/common/http';
-import { switchMap, map } from 'rxjs/operators';
+import { switchMap, map, take, tap } from 'rxjs/operators';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { PlaceLocation } from 'src/app/shared/location.module';
 
@@ -25,8 +25,32 @@ export class RealEstateService {
     }
     
   // Firestore
-  createRealEstatePost(post: RealEstatePost): void{
-    this.postsRef.add({...post});
+  createRealEstatePost(realEstateId: string,
+    cata: string,
+    title: string,
+    content: string,
+    price: number,
+    thumbnailUrl: string,
+    city: string,
+    district: string,
+    address: string,
+    rating: number,
+    location: PlaceLocation): void{
+      let newPost =  { postId: '1',
+      realEstateId: '1',
+      cata: cata,
+      title: title,
+      content: content,
+      price: price,
+      thumbnailUrl: thumbnailUrl,
+      city: city,
+      district: district,
+      address: address,
+      rating: rating,
+      location: location
+}
+      this.postsRef.add({...newPost})
+       
   }
 
   updateRealEstePost(key: string, value: any):Promise<void> {
@@ -65,13 +89,20 @@ export class RealEstateService {
     )
   }
 
-  addNewPost(title: string,
-    description: string,
-    imageUrl: string,
+  addNewPost(
+    realEstateId: string,
+    cata: string,
+    title: string,
+    content: string,
     price: number,
-    availableFrom: Date,
-    availableTo: Date,
+    thumbnailUrl: string,
+    city: string,
+    district: string,
+    address: string,
+    rating: number,
     location: PlaceLocation) {
+    
+     
       
     }
       

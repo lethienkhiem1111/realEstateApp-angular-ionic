@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs/real-estate-posts"></ion-back-button>
     </ion-buttons>
-    <ion-title>new-post</ion-title>
+    <ion-title>Đăng rao tin</ion-title>
     <ion-buttons slot="primary">
         <ion-button (click)="onCreatePost()" [disabled]="!form.valid || !form.get('image').value">
           <ion-icon name="checkmark" slot="icon-only"></ion-icon>
@@ -21,12 +21,17 @@
           <ion-select-option value="motel">Cho thuê nhà trọ</ion-select-option>
         </ion-select>
       </ion-item>
-    <form *ngIf="!postCata.valid && postCata.valid == 'house'">
-      <div>bán nhà</div>
-    </form>
-    <form>
-      <div>bán đất</div>
+      <form>
+        <div>bán đất</div>
+      </form> -->
+
+<!-- Đăng tin cho thuê phòng trọ -->
+    <!-- <form *ngIf="cata && cata === 'motelLeases'">
+      <div>Cho thuê phòng trọ</div>
     </form> -->
+
+
+<!-- Đăng tin bán nhà -->
     <form [formGroup]="form">
         <ion-grid>
           <ion-row>
@@ -36,7 +41,7 @@
                 <ion-input type="text" autocomplete autocorrect formControlName="title"></ion-input>
               </ion-item>
               <ion-item *ngIf="!form.get('title').valid && form.get('title').touched">
-                <ion-label>Require title</ion-label>
+                <ion-label style="font-size: 0.8rem; color: red;">Vui lòng nhập tiêu đề bài đăng</ion-label>
               </ion-item>
             </ion-col>
           </ion-row>
@@ -48,7 +53,7 @@
               </ion-item>
         
             <ion-item *ngIf="!form.get('content').valid && form.get('content').touched">
-              <ion-label >Require Content</ion-label>
+              <ion-label style="font-size: 0.8rem; color: red;" >Vui lòng nhập nội dung bài đăng</ion-label>
             </ion-item>
             </ion-col>
           </ion-row>
@@ -58,6 +63,9 @@
                 <ion-label position="floating">Giá</ion-label>
                 <ion-input type="number" formControlName="price"></ion-input>
               </ion-item>
+              <ion-item *ngIf="!form.get('price').valid && form.get('price').touched">
+                <ion-label style="font-size: 0.8rem; color: red;" >Vui lòng nhập giá</ion-label>
+              </ion-item>
             </ion-col>
           </ion-row>
           <ion-row>
@@ -65,6 +73,50 @@
               <ion-item>
                 <ion-label position="floating">Diện tích</ion-label>
                 <ion-input type="number" formControlName="area"></ion-input>
+              </ion-item>
+              <ion-item *ngIf="!form.get('area').valid && form.get('area').touched">
+                <ion-label style="font-size: 0.8rem; color: red;" >Vui lòng nhập diện tích</ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size-sm="6" offset-sm="3">
+              <ion-item>
+                <ion-label position="floating">Tỉnh/Thành phố</ion-label>
+                <ion-input type="text" formControlName="city"></ion-input>
+              </ion-item>
+              <ion-item *ngIf="!form.get('area').valid && form.get('area').touched">
+                <ion-label style="font-size: 0.8rem; color: red;" >Vui lòng nhập tỉnh/thành phố</ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size-sm="6" offset-sm="3">
+              <ion-item>
+                <ion-label position="floating">Huyện</ion-label>
+                <ion-input type="text" formControlName="district"></ion-input>
+              </ion-item>
+              <ion-item *ngIf="!form.get('district').valid && form.get('district').touched">
+                <ion-label style="font-size: 0.8rem; color: red;" >Vui lòng nhập huyện</ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size-sm="6" offset-sm="3">
+              <ion-item>
+                <ion-label position="floating">Địa chỉ</ion-label>
+                <ion-input type="text" formControlName="address"></ion-input>
+              </ion-item>
+              <ion-item *ngIf="!form.get('address').valid && form.get('address').touched">
+                <ion-label style="font-size: 0.8rem; color: red;" >Vui lòng nhập địa chỉ</ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row  *ngIf="cata && !(cata === 'motelLeases')">
+            <ion-col size-sm="6" offset-sm="3">
+              <ion-item>
+                <ion-label position="floating">Giấy tờ</ion-label>
+                <ion-input type="text" formControlName="certification"></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>

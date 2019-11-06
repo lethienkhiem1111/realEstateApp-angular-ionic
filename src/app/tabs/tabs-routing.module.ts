@@ -24,13 +24,14 @@ const routes: Routes = [
                         loadChildren: './real-estate-posts/edit-post/edit-post.module#EditPostPageModule'
                     },
                     {
-                        path: ':rpostId',
-                        loadChildren: './real-estate-posts/detail-post/detail-post.module#DetailPostPageModule'
+                        path: 'direction',
+                        loadChildren: () => import('./real-estate-posts/direction/direction.module').then( m => m.DirectionPageModule)
                     },
                     {
-                        path: 'direction',
-                        loadChildren: './real-estate-posts/direction/direction.module#DirectionPageModule'
+                        path: ':rpostId',
+                        loadChildren: './real-estate-posts/detail-post/detail-post.module#DetailPostPageModule'
                     }
+                    
                 ]
             },
             {
@@ -93,10 +94,7 @@ const routes: Routes = [
         path: '',
         redirectTo: 'real-estate-posts',
         pathMatch: 'full'
-    },
-  { path: 'direction', loadChildren: './real-restate-posts/direction/direction.module#DirectionPageModule' },
-
-
+    }
 ];
 
 @NgModule({
