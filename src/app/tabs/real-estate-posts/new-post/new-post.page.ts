@@ -76,6 +76,22 @@ export class NewPostPage implements OnInit {
           updateOn: 'blur',
           validators: [Validators.required]
         }),
+        house_level: new FormControl(null, {
+          updateOn: 'blur',
+          validators: [Validators.required]
+        }),
+        bedroom: new FormControl(null, {
+          updateOn: 'blur',
+          validators: [Validators.required]
+        }),
+        restroom: new FormControl(null, {
+          updateOn: 'blur',
+          validators: [Validators.required]
+        }),
+        floor: new FormControl(null, {
+          updateOn: 'blur',
+          validators: [Validators.required]
+        }),
         city: new FormControl(null, {
           updateOn: 'blur',
           validators: [Validators.required]
@@ -89,6 +105,10 @@ export class NewPostPage implements OnInit {
           validators: [Validators.required]
         }),
         certification: new FormControl(null, {
+          updateOn: 'blur',
+          validators: [Validators.required]
+        }),
+        direction: new FormControl(null, {
           updateOn: 'blur',
           validators: [Validators.required]
         }),
@@ -131,25 +151,37 @@ export class NewPostPage implements OnInit {
       return
     }
     console.log(this.form.value);
+    let location = this.form.value.location.staticMapImageUrl;
+    console.log('location: ', location)
     this.loadingCtrl.create({
       message: 'Creating place...'
     }).then(loadingEl => {
       loadingEl.present();
       this.realEstateService.uploadImage(this.form.get('image').value).pipe(
-        tap(resImage => {
+        switchMap(resImage => {
          
-          return this.realEstateService.createRealEstatePost(
-            '1', this.cata, this.form.value.title, this.form.value.content, this.form.value.price,
-            resImage.imageUrl, this.form.value.city, this.form.value.district, this.form.value.address,
-            0, this.form.value.location
-          );
+          return this.realEstateService.addNewPost(this.cata, this.form.value.title, this.form.value.content, this.form.value.price,
+            this.form.value.area, resImage.imageUrl, resImage.imageUrl, this.form.value.city, this.form.value.district,
+            this.form.value.address, this.form.value.bedroom, this.form.value.restroom, this.form.value.floor,
+            this.form.value.certification, this.form.value.direction, 0, location,this.form.value.house_level,
+          // return this.realEstateService.createRealEstatePost(
+          //   '1', this.cata, this.form.value.title, this.form.value.content, this.form.value.price,
+          //   resImage.imageUrl, this.form.value.city, this.form.value.district, this.form.value.address,
+          //   0, this.form.value.location
+          // );
+        )
         })
       )
-      .subscribe(() => {
+      .subscribe((data) => {
+        console.log("POST Request is successful ", data);
         loadingEl.dismiss();
         this.form.reset();
         this.router.navigate(['/tabs'])
-      });
+      }, error  => {
+
+        console.log("Error", error);
+      }
+        );
     })
     
     

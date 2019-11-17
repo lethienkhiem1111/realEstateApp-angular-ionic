@@ -16,7 +16,7 @@ export class DirectionPage implements OnInit {
   toSellHouse(){
     let navigationExtract: NavigationExtras = {
       queryParams: {
-        cata: 'sellhouse'
+        cata: 'house'
       }
     }
     this.router.navigate(['tabs/real-estate-posts/new-post'], navigationExtract);
@@ -24,7 +24,7 @@ export class DirectionPage implements OnInit {
   toRentHouse(){
     let navigationExtract: NavigationExtras = {
       queryParams: {
-        cata: 'renthouse'
+        cata: 'house'
       }
     }
     this.router.navigate(['tabs/real-estate-posts/new-post'], navigationExtract);

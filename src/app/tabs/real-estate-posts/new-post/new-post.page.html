@@ -58,7 +58,7 @@
             </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col size-sm="6" offset-sm="3">
+            <ion-col size-sm="2" offset-sm="3">
               <ion-item>
                 <ion-label position="floating">Giá</ion-label>
                 <ion-input type="number" formControlName="price"></ion-input>
@@ -67,18 +67,49 @@
                 <ion-label style="font-size: 0.8rem; color: red;" >Vui lòng nhập giá</ion-label>
               </ion-item>
             </ion-col>
+            <ion-col size-sm="2" offset-sm="3">
+                <ion-item>
+                  <ion-label position="floating">Diện tích</ion-label>
+                  <ion-input type="number" formControlName="area"></ion-input>
+                </ion-item>
+                <ion-item *ngIf="!form.get('area').valid && form.get('area').touched">
+                  <ion-label style="font-size: 0.8rem; color: red;" >Vui lòng nhập diện tích</ion-label>
+                </ion-item>
+              </ion-col>
+            <ion-col size-sm="2" offset-sm="3">
+                <ion-item>
+                  <ion-label position="floating">Nhà cấp</ion-label>
+                  <ion-input type="text" formControlName="house_level"></ion-input>
+                </ion-item>
+                <ion-item *ngIf="!form.get('house_level').valid && form.get('house_level').touched">
+                  <ion-label style="font-size: 0.8rem; color: red;" >Vui lòng nhập thông tin</ion-label>
+                </ion-item>
+              </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col size-sm="6" offset-sm="3">
-              <ion-item>
-                <ion-label position="floating">Diện tích</ion-label>
-                <ion-input type="number" formControlName="area"></ion-input>
-              </ion-item>
-              <ion-item *ngIf="!form.get('area').valid && form.get('area').touched">
-                <ion-label style="font-size: 0.8rem; color: red;" >Vui lòng nhập diện tích</ion-label>
-              </ion-item>
-            </ion-col>
+            <ion-col size-sm="2" offset-sm="3">
+                <ion-item>
+                  <ion-label position="floating">Phòng ngủ</ion-label>
+                  <ion-input type="number" formControlName="bedroom"></ion-input>
+                </ion-item>
+               
+              </ion-col>
+            <ion-col size-sm="2" offset-sm="3">
+                <ion-item>
+                  <ion-label position="floating">Phòng tắm</ion-label>
+                  <ion-input type="number" formControlName="restroom"></ion-input>
+                </ion-item>
+               
+              </ion-col>
+            <ion-col size-sm="2" offset-sm="3">
+                <ion-item>
+                  <ion-label position="floating">Số tầng</ion-label>
+                  <ion-input type="number" formControlName="floor"></ion-input>
+                </ion-item>
+               
+              </ion-col>
           </ion-row>
+     
           <ion-row>
             <ion-col size-sm="6" offset-sm="3">
               <ion-item>
@@ -113,10 +144,16 @@
             </ion-col>
           </ion-row>
           <ion-row  *ngIf="cata && !(cata === 'motelLeases')">
-            <ion-col size-sm="6" offset-sm="3">
+            <ion-col size-sm="3" offset-sm="3">
               <ion-item>
                 <ion-label position="floating">Giấy tờ</ion-label>
                 <ion-input type="text" formControlName="certification"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col size-sm="3" offset-sm="3">
+              <ion-item>
+                <ion-label position="floating">Hướng đất</ion-label>
+                <ion-input type="text" formControlName="direction"></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>

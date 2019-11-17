@@ -28,7 +28,7 @@ const routes: Routes = [
                         loadChildren: () => import('./real-estate-posts/direction/direction.module').then( m => m.DirectionPageModule)
                     },
                     {
-                        path: ':rpostId',
+                        path: ':catalog/:rpostId',
                         loadChildren: './real-estate-posts/detail-post/detail-post.module#DetailPostPageModule'
                     }
                     

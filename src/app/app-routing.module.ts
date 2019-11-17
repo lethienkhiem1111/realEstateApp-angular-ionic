@@ -1,12 +1,21 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
+import { OktaAuthGuard, OktaCallbackComponent, OktaLoginRedirectComponent } from '@okta/okta-angular';
 
 const routes: Routes = [
   { path: '', redirectTo: 'tabs', pathMatch: 'full' },
   // { path: 'auth', loadChildren: './auth/auth.module#AuthPageModule' },
   { path: 'index', loadChildren: './index/index.module#IndexPageModule' },
-  { path: 'tabs', loadChildren: './tabs/tabs.module#TabsPageModule',canLoad: [AuthGuard] }
+  { path: 'tabs', loadChildren: './tabs/tabs.module#TabsPageModule',canActivate: [OktaAuthGuard] },
+  {
+    path: 'implicit/callback',
+    component: OktaCallbackComponent
+  },
+  {
+    path: 'login',
+    component: OktaLoginRedirectComponent
+  },
   // { path: 'real-estate-post', loadChildren: './real-estate-posts/real-estate-post.module#RealEstatePostsPageModule' },
   // { path: 'notification', loadChildren: './notification/notification.module#NotificationPageModule' },
   // { path: 'properties', loadChildren: './properties/properties.module#PropertiesPageModule' },

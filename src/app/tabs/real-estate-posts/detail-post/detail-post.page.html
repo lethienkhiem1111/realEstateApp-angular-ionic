@@ -1,9 +1,92 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>detail-poqdq d qst</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/real-estate-posts"></ion-back-button>
+      <ion-title>Tin BDS</ion-title>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content >
+  <ion-grid *ngIf="isLoading" >
+    <ion-row>
+      <ion-col>
+        <ion-spinner></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="!isLoading">
+    <ion-row>
+      <ion-col>
+        <ion-img [src]="postRE.image_url"></ion-img>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <strong>{{ postRE.title }}</strong>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col size="6">
+        <ion-text color="danger">
+          <strong>{{ postRE.price | currency : '' : '' : '1.0-0'}} vnđ</strong>
+        </ion-text>
+      </ion-col>
+   
+      <ion-col size="3">
 
+      </ion-col>
+        <ion-col size="2">
+        <ion-button size="small" fill="outline" color="danger" shape="round">Lưu tin</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <p>{{ postRE.content }}</p>     
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6">
+        <ion-icon name="md-grid"></ion-icon>
+        <ion-label>Diện tích: {{ postRE.area }}</ion-label>
+      </ion-col>
+      <ion-col size="6">
+          <ion-icon name="md-print"></ion-icon>
+          <ion-label>Số phòng ngủ: {{ postRE.bedroom }}</ion-label>
+      </ion-col>
+    </ion-row>  
+    <ion-row>
+      <ion-col size="6">
+        <ion-icon name="md-pint"></ion-icon>
+        <ion-label>Số nhà vệ sinh: {{ postRE.restroom }}</ion-label>
+      </ion-col>
+      <ion-col size="6">
+          <ion-icon name="md-calculator"></ion-icon>
+          <ion-label>Số tầng: {{ postRE.floor }}</ion-label>
+      </ion-col>
+    </ion-row>  
+    <ion-row>
+      <ion-col size="6">
+        <ion-icon name="md-shuffle"></ion-icon>
+        <ion-label>Hướng đất: {{ postRE.direction }}</ion-label>
+      </ion-col>
+      <ion-col size="6">
+          <ion-icon name="md-bookmarks"></ion-icon>
+          <ion-label>Giấy tờ: {{ postRE.certification }}</ion-label>
+      </ion-col>
+    </ion-row>  
+    
+    <ion-row>
+      <ion-col>
+        <h4>Bản đồ</h4>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-img role="button" (click)="onShowFullMap()" 
+        class="location-image" [src]="postRE.location"></ion-img>
+      </ion-col>
+    </ion-row>
+   
+  </ion-grid>
 </ion-content>

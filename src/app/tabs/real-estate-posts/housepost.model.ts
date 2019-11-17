@@ -1,14 +1,14 @@
 import { PlaceLocation } from 'src/app/shared/location.module';
 
-export class RealEstatePost {
+export class HousePost {
     constructor(
-        public postId: string,
         public user_id: string,
         public catalog: string,
         public title: string,
         public content: string,
         public price: number,
-        public area: number,
+        public area: number,  
+        public thumbnail: string,
         public image_url: string,
         public city: string,
         public district: string,

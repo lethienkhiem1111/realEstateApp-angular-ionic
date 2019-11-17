@@ -7,6 +7,7 @@ import { Plugins, Capacitor } from '@capacitor/core';
 import { AuthService } from './auth/auth.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { OktaAuthService } from '@okta/okta-angular';
 
 @Component({
   selector: 'app-root',
@@ -17,13 +18,29 @@ export class AppComponent implements OnInit, OnDestroy {
   private authSub: Subscription;
   private previosAuthState = false;
 
+  isAuthenticated: boolean;
+
   constructor(
     private platform: Platform,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    public oktaAuth: OktaAuthService
   ) {
+    
+    // subscribe to authentication state changes
+    this.oktaAuth.$authenticationState.subscribe(
+      (isAuthenticated: boolean)  => this.isAuthenticated = isAuthenticated
+    );
     this.initializeApp();
   }
+
+  login() {
+    this.oktaAuth.loginRedirect('/tabs');
+  }
+  logout() {
+    this.oktaAuth.logout('/login');
+  }
+
 
   initializeApp() {
     this.platform.ready().then(() => {
@@ -35,7 +52,12 @@ export class AppComponent implements OnInit, OnDestroy {
 
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.isAuthenticated = await this.oktaAuth.isAuthenticated();
+    const userClaims = await this.oktaAuth.getUser().then(userClaims=> {
+      console.log(userClaims.sub);
+    })
+
     this.authSub = this.authService.userIsAuthenticated.subscribe(isAuth => {
       if(!isAuth && this.previosAuthState !== isAuth) {
         this.router.navigateByUrl('/index/welcome');
