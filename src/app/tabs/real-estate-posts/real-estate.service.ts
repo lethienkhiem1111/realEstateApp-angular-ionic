@@ -61,7 +61,7 @@ export class RealEstateService {
   get posts() {
     return this._posts.asObservable();
   }
-
+  //Get post by id
   getPost(postId: string, catalog: string) {
     return this.http.get<RealEstateResponse>(`http://localhost:8762/post/${catalog}/${postId}`).pipe(map(resData => {
       return new RealEstatePost(postId, resData.user_id, resData.catalog, resData.title,
@@ -70,6 +70,10 @@ export class RealEstateService {
         resData.floor, resData.certification, resData.direction, resData.rating, resData.house_level)
     }));
   }
+
+  
+
+  //
 
   fetchPosts() {
     return this.http.get<PostsResponse[]>(`http://localhost:8762/post/`).pipe(
