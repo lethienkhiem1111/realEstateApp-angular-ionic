@@ -7,15 +7,24 @@ import { OktaAuthService } from '@okta/okta-angular';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-  profile: any;
+  userInfo: any;
   constructor(public oktaAuth: OktaAuthService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const userClaims = await this.oktaAuth.getUser();
+
+    // user name is exposed directly as property
+    this.userInfo = userClaims;
+    console.log(userClaims)
     this.getProfile();
   }
   getProfile() {
-    this.oktaAuth.getUser().then(user => {
-      console.log(user);
+    this.oktaAuth.getAccessToken().then(token => {
+      console.log(token);
     })
   }
+  logout() {
+    this.oktaAuth.logout('/');
+  }
+
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { from } from 'rxjs';
+import { from, BehaviorSubject } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { OktaService } from 'src/app/auth/okta.service';
 import { OktaAuthService } from '@okta/okta-angular';
@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class PropertiesService {
+  private _posts = new BehaviorSubject<PostsResponse[]>([]);
 
   constructor(
 
