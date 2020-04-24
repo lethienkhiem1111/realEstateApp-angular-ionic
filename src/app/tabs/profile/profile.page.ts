@@ -17,6 +17,10 @@ export class ProfilePage implements OnInit {
     this.userInfo = userClaims;
     console.log(userClaims)
     this.getProfile();
+    console.log('ioni')
+  }
+  ionViewWillEnter() {
+    console.log('viewwill')
   }
   getProfile() {
     this.oktaAuth.getAccessToken().then(token => {

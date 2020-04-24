@@ -3,7 +3,7 @@ import { from, BehaviorSubject } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { OktaService } from 'src/app/auth/okta.service';
 import { OktaAuthService } from '@okta/okta-angular';
-import { mergeMap } from 'rxjs/operators';
+import { mergeMap, tap } from 'rxjs/operators';
 import { PostsResponse } from '../real-estate-posts/posts.interface';
 import { HttpClient } from '@angular/common/http';
 
@@ -20,6 +20,11 @@ export class PropertiesService {
     public oktaAuth: OktaAuthService
   ) { }
 
+
+  get posts() {
+    return this._posts.asObservable();
+  }
+
   //Get posts by user id
   fetchPostsByUserId() {
     let userId;
@@ -29,7 +34,11 @@ export class PropertiesService {
       }
       
       userId = userClaims.sub;
-      return this.http.get<PostsResponse[]>(`http://localhost:8762/personal/post/${userId}`);
+      return this.http.get<PostsResponse[]>(`http://localhost:8762/personal/post/${userId}`).pipe(
+      tap(posts => {
+        this._posts.next(posts);
+      })
+    );
     }))
   }
 }

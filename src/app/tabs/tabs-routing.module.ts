@@ -25,13 +25,13 @@ const routes: Routes = [
                     },
                     {
                         path: 'direction',
-                        loadChildren: () => import('./real-estate-posts/direction/direction.module').then( m => m.DirectionPageModule)
+                        loadChildren: () => import('./real-estate-posts/direction/direction.module').then(m => m.DirectionPageModule)
                     },
                     {
                         path: ':catalog/:rpostId',
                         loadChildren: './real-estate-posts/detail-post/detail-post.module#DetailPostPageModule'
                     }
-                    
+
                 ]
             },
             {
@@ -51,16 +51,16 @@ const routes: Routes = [
                         loadChildren: './properties/properties.module#PropertiesPageModule'
                     },
                     {
-                        path: 'lands',
-                        loadChildren: './properties/lands/lands.module#LandsPageModule'
-                    },
-                    {
-                        path: 'houses',
-                        loadChildren: './properties/houses/houses.module#HousesPageModule'
+                        path: 'new-houses',
+                        loadChildren: './properties/houses/houses.module#CreateHousePageModule'
                     },
                     {
                         path: 'motelleases',
                         loadChildren: './properties/motel-leases/motel-leases.module#MotelLeasesPageModule'
+                    },
+                    {
+                        path: 'edit-houses/:houseId',
+                        loadChildren: './properties/houses/houses.module#EditHousePageModule'
                     },
 
                 ]
@@ -94,7 +94,11 @@ const routes: Routes = [
         path: '',
         redirectTo: 'real-estate-posts',
         pathMatch: 'full'
-    }
+    },
+    { path: 'edit-house', loadChildren: './properties/houses/edit-house/edit-house.module#EditHousePageModule' },
+    { path: 'create-house', loadChildren: './properties/houses/create-house/create-house.module#CreateHousePageModule' },
+    { path: 'detail-house', loadChildren: './properties/houses/detail-house/detail-house.module#DetailHousePageModule' }
+
 ];
 
 @NgModule({
